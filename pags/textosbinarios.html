@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/textosbinarios.css">
     <title>ToolBox</title>
   <title>Conversor de Texto para Binário e vice-versa</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-  </style>
+
 </head>
 <body>
   <h1>Conversor de Texto para Binário e vice-versa</h1>
-  <div>
-    <label for="text-input">Texto:</label>
-    <textarea id="text-input" placeholder="Insira o texto aqui"></textarea>
+
+<div class="coluna">
+
+<div class="textos">
+    <textarea id="text-input" placeholder="Insira o texto aqui" rows="5" cols="33"></textarea>
+    <button onclick="convertToBinary()">Converter para Binário</button>
+</div>
+
+<div class="binarios">
+    <textarea id="binary-input" placeholder="Insira o código binário aqui" rows="5" cols="33"></textarea>
+    <button onclick="convertToText()">Converter para Texto</button>
+ </div>
+
+
+</div>
+
+<div class="colunaR">
+  <div class="quadradoR">
+  <h2 class="resultado">Resultado:</h2>
+   <p id="output"></p>
   </div>
-  <div>
-    <label for="binary-input">Código Binário:</label>
-    <textarea id="binary-input" placeholder="Insira o código binário aqui"></textarea>
-  </div>
-  <button onclick="convertToBinary()">Converter para Binário</button>
-  <button onclick="convertToText()">Converter para Texto</button>
-  <h2>Resultado:</h2>
-  <p id="output"></p>
+ </div>
+ 
 
   <script>
     function convertToBinary() {
       var text = document.getElementById("text-input").value;
       var binary = textToBinary(text);
-      document.getElementById("binary-input").value = binary;
+      document.querySelector(".resultado").innerText = binary;
     }
 
     function convertToText() {
       var binary = document.getElementById("binary-input").value;
       var text = binaryToText(binary);
-      document.getElementById("text-input").value = text;
+      document.querySelector(".resultado").innerText = text;
     }
 
     function textToBinary(text) {

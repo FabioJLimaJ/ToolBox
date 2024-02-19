@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    
+  }
+  textarea{
+    resize: none;
+  }
+
+.coluna{
+display:flex;
+justify-content:center;
+  }
+
+
+  .textos, .binarios{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    margin:1rem;
+  }
+  .colunaR{
+    display: grid;
+    place-items: center;
+  }
+  .quadradoR{
+    border-style:Solid;
+    padding:1rem;
+word-break: normal;
+width:20rem;
+text-align: center;
+  }
