@@ -19,8 +19,8 @@
 </div>
 
 <div class="binarios">
-    <textarea id="binary-input" placeholder="Insira o código binário aqui" rows="5" cols="33"></textarea>
-    <button onclick="convertToText()">Converter para Texto</button>
+    <input type="text" class="tess" id="binary-input" placeholder="Insira o código binário aqui">
+    <button onclick="convertToText()" id="buttonB">Converter para Texto</button>
  </div>
 
 
@@ -35,14 +35,29 @@
  
 
   <script>
+
+   const buttonSubmit = document.querySelector("#buttonB");
+   const inputB = document.querySelector(".tess");
+ buttonSubmit.disabled = true;
+
+   inputB.addEventListener("keyup", () => {
+
+ if(inputB.value.length > 0){
+  buttonSubmit.disabled = false;
+ }else{
+  buttonSubmit.disabled = true;
+ }
+   });
+
+
     function convertToBinary() {
-      var text = document.getElementById("text-input").value;
+      var text = document.querySelector("#text-input").value;
       var binary = textToBinary(text);
       document.querySelector(".resultado").innerText = binary;
     }
 
     function convertToText() {
-      var binary = document.getElementById("binary-input").value;
+      var binary = document.querySelector("#binary-input").value;
       var text = binaryToText(binary);
       document.querySelector(".resultado").innerText = text;
     }

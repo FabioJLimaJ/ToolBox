@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pomodoro</title>
+</head>
+<body>
+  
+  <h1 id="temp">25:00</h1>
+  <h1 id="tempPause">00:00</h1>
+  
+  <br>
+  <button id="start">começar</button>
+  <button id="pause">pausar</button>
+  <button id="stop">parar</button>
+<br>
+  <input type="number" placeholder="tempo"id="inputTempo" value="25"><br>
+  <input type="number" placeholder="pausa"id="inputPause">
+  
+  
+  
+  <script>
+    
+    var buttonStart = document.querySelector("#start");
+    var inputTemp = document.querySelector("#inputTempo");
+    var sec = 0
+    var min = 0
+    var interval
+    var pomodoro
+    
+    document.querySelector('#start').addEventListener("click", começar);
+    document.querySelector('#pause').addEventListener("click", pausar);
+    document.querySelector('#stop').addEventListener("click", parar);
+      
+    inputTemp.addEventListener("keyup", () =>{
+    document.querySelector("#temp").innerText = inputTemp.value + ":00";
+    if(inputTemp.value.length == ""){
+    document.querySelector("#temp").innerText = inputTemp.value + "00:00";
+    buttonStart.disabled = true;
+    }else{
+        buttonStart.disabled = false;
+    }
+    });
+
+
+    function twoDigits(digito){
+      if(digito < 10){
+        return ('0'+ digito)
+      }else{
+        return (digito)
+      }
+    }
+    
+function começar() {
+
+ interval = setInterval(cronometro,100);
+ var inputMin = document.querySelector('#inputTempo').value;
+ min = parseInt(inputMin);
+}
+
+
+function pausar(){
+clearInterval(interval)
+}
+
+function parar(){
+  pausar();
+  sec = 0;
+  min = 0;
+  document.querySelector('#temp').innerText = "00:00";
+}
+
+function cronometro(){
+  if(sec > 0){
+    sec--
+  }
+  if(sec <= 0){
+    min--
+    sec = 59 
+  }
+  if(min < 0){
+parar();
+  }
+  
+  document.querySelector('#temp').innerText = twoDigits(min)+':'+twoDigits(sec);
+}
+
+
+  </script>
+</body>
+</html>
