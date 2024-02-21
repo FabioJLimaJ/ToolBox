@@ -14,8 +14,8 @@
 <div class="coluna">
 
 <div class="textos">
-    <textarea id="text-input" placeholder="Insira o texto aqui" rows="5" cols="33"></textarea>
-    <button onclick="convertToBinary()">Converter para Binário</button>
+    <input type="text" id="text-input" placeholder="Insira o texto aqui" class="tessT">
+    <button onclick="convertToBinary()" id="buttonT">Converter para Binário</button>
 </div>
 
 <div class="binarios">
@@ -35,10 +35,12 @@
  
 
   <script>
-
+   const buttonSubmitt = document.querySelector("#buttonT");
+   const inputT = document.querySelector(".tessT");
    const buttonSubmit = document.querySelector("#buttonB");
    const inputB = document.querySelector(".tess");
- buttonSubmit.disabled = true;
+   buttonSubmit.disabled = true;
+   buttonSubmitt.disabled = true;
 
    inputB.addEventListener("keyup", () => {
 
@@ -48,7 +50,15 @@
   buttonSubmit.disabled = true;
  }
    });
+   
+   inputT.addEventListener("keyup", () => {
 
+if(inputT.value.length > 0){
+ buttonSubmitt.disabled = false;
+}else{
+ buttonSubmitt.disabled = true;
+}
+  });
 
     function convertToBinary() {
       var text = document.querySelector("#text-input").value;

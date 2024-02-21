@@ -8,16 +8,20 @@
 </head>
 <body>
   
-  <h1 id="temp">25:00</h1>
-  <h1 id="tempPause">00:00</h1>
+  <h1 id="temp" class="tempou">25:00</h1>
+  <h1 id="tempPause">05:00</h1>
   
   <br>
   <button id="start">começar</button>
   <button id="pause">pausar</button>
-  <button id="stop">parar</button>
+  <button id="startPause">intervalo</button>
+  <button id="configurar">configurar</button>
 <br>
-  <input type="number" placeholder="tempo"id="inputTempo" value="25"><br>
-  <input type="number" placeholder="pausa"id="inputPause">
+  <input type="number" placeholder="tempo"id="inputTempo" value="25">
+
+  
+  <br>
+  <input type="number" placeholder="pausa"id="inputPause" value="5">
   
   
   
@@ -26,21 +30,22 @@
     var buttonStart = document.querySelector("#start");
     var inputTemp = document.querySelector("#inputTempo");
     var sec = 0
-    var min = 0
+    var min = 25
+    var secPause = 0
+    var minPause = 5
     var interval
     var pomodoro
     
     document.querySelector('#start').addEventListener("click", começar);
+    document.querySelector('#startPause').addEventListener("click", começarPause);
     document.querySelector('#pause').addEventListener("click", pausar);
-    document.querySelector('#stop').addEventListener("click", parar);
+    document.querySelector('#configurar').addEventListener("click", configurar);
+ 
       
     inputTemp.addEventListener("keyup", () =>{
     document.querySelector("#temp").innerText = inputTemp.value + ":00";
     if(inputTemp.value.length == ""){
     document.querySelector("#temp").innerText = inputTemp.value + "00:00";
-    buttonStart.disabled = true;
-    }else{
-        buttonStart.disabled = false;
     }
     });
 
@@ -53,12 +58,24 @@
       }
     }
     
-function começar() {
-
- interval = setInterval(cronometro,100);
- var inputMin = document.querySelector('#inputTempo').value;
+function configurar(){
+   var inputMin = document.querySelector('#inputTempo').value;
  min = parseInt(inputMin);
+
+ var inputPause = document.querySelector('#inputPause').value;
+ minPause = parseInt(inputPause);
 }
+
+function começar() {
+ interval = setInterval(cronometro,100);
+
+}
+
+function começarPause(){
+  interval = setInterval(cronometroPause,100);
+
+}
+
 
 
 function pausar(){
@@ -82,11 +99,29 @@ function cronometro(){
   }
   if(min < 0){
 parar();
+
   }
   
   document.querySelector('#temp').innerText = twoDigits(min)+':'+twoDigits(sec);
 }
+function cronometroPause(){
+  if(secPause > 0){
+    secPause--
+  }
+  if(secPause <= 0){
+    minPause--
+    secPause = 59 
+  }
+  if(minPause < 0){
+    clearInterval(interval);
+    secPause = 0;
+  minPause = 0;
+    document.querySelector('#tempPause').innerText = "00:00";
 
+  }
+  
+  document.querySelector('#tempPause').innerText = twoDigits(minPause)+':'+twoDigits(secPause);
+}
 
   </script>
 </body>
