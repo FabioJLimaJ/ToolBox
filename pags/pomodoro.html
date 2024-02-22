@@ -3,26 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/inputs.css">
+  <link rel="stylesheet" href="../css/pomodoro.css">
+  <script defer src="../js/navbar.js"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pomodoro</title>
 </head>
 <body>
-  
-  <h1 id="temp" class="tempou">25:00</h1>
-  <h1 id="tempPause">05:00</h1>
-  
-  <br>
-  <button id="start">começar</button>
-  <button id="pause">pausar</button>
-  <button id="startPause">intervalo</button>
-  <button id="configurar">configurar</button>
-<br>
-  <input type="number" placeholder="tempo"id="inputTempo" value="25">
+  <header class="header">
+    <nav class="nav">
+      <a href="/" class="logo"><img src="../img/logo.png" alt="" ></a>
+      <button class="hamburger"></button>
+      <ul class="nav-list">
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#">Configurações</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+  <main class="central">
 
-  
-  <br>
-  <input type="number" placeholder="pausa"id="inputPause" value="5">
-  
+    <aside class="asideE">left</aside>
+    
+    <section class="asideC">
+      
+<center>
+
+
+         <div class="quadrado">
+<h1 id="temp" class="tempou">25:00</h1>
+      </div>
+      <br>
+      <div class="quadrado">
+         <h1 id="tempPause">05:00</h1>
+              </div>
+
+      <br>
+      <div class="botoes">
+      <button id="start" class="button-5" role="button" style="display:block;">começar</button>
+      <button id="pause" class="button-5" role="button"style="display:none;">pausar</button>
+      
+    </div><br>
+<button id="startPause" class="button-5" role="button" style="display:block;">intervalo</button>
+<button id="startPauseI" class="button-5" role="button" style="display:none;">Pausar</button>
+
+      <button id="configurar">configurar</button>
+    <br>
+      <input type="number" placeholder="tempo"id="inputTempo" value="25">
+    
+      
+      <br>
+      <input type="number" placeholder="pausa"id="inputPause" value="5">
+      
+   
+ 
+ 
+
+</center>
+
+    </section>
+    
+    <aside class="asideD">right</aside>
+    
+    </main>
   
   
   <script>
@@ -39,6 +85,7 @@
     document.querySelector('#start').addEventListener("click", começar);
     document.querySelector('#startPause').addEventListener("click", começarPause);
     document.querySelector('#pause').addEventListener("click", pausar);
+    document.querySelector('#startPauseI').addEventListener("click", pausarI);
     document.querySelector('#configurar').addEventListener("click", configurar);
  
       
@@ -67,19 +114,30 @@ function configurar(){
 }
 
 function começar() {
- interval = setInterval(cronometro,100);
+ interval = setInterval(cronometro,1000);
+ document.querySelector("#start").style.display = "none";
+ document.querySelector("#pause").style.display = "block";
 
 }
 
 function começarPause(){
-  interval = setInterval(cronometroPause,100);
+  interval = setInterval(cronometroPause,1000);
+  document.querySelector("#startPause").style.display = "none";
+  document.querySelector("#startPauseI").style.display = "block";
 
 }
 
 
 
 function pausar(){
-clearInterval(interval)
+clearInterval(interval);
+document.querySelector("#start").style.display = "block";
+document.querySelector("#pause").style.display = "none";
+}
+function pausarI(){
+clearInterval(interval);
+document.querySelector("#startPause").style.display = "block";
+document.querySelector("#startPauseI").style.display = "none";
 }
 
 function parar(){
@@ -99,7 +157,6 @@ function cronometro(){
   }
   if(min < 0){
 parar();
-
   }
   
   document.querySelector('#temp').innerText = twoDigits(min)+':'+twoDigits(sec);

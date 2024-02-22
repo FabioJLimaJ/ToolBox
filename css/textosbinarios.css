@@ -2,9 +2,6 @@ body {
     font-family: Arial, sans-serif;
     
   }
-  textarea{
-    resize: none;
-  }
 
 .coluna{
 display:flex;

@@ -1,0 +1,30 @@
+.input {
+    width: 200px;
+    padding: 12px;
+    border: 2px solid brown;
+    border-radius: 8px;
+    outline: none;
+    font-size: 18px;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  .input:focus {
+    border-color: brown;
+    box-shadow: 0 0 15px rgb(187, 47, 47);
+    transform: scale(1.02);
+  }
+  
+  /* Placeholder Styling */
+  .input::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  /* Hover Effect */
+  .input:hover {
+    background-color: #f0f8ff;
+  }
+  
